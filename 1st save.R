@@ -147,3 +147,45 @@ plot(cumsum(sample(c(-1, 1), 25, replace = TRUE)), type = 's')
 ?sample
 sample(5, 25, replace = TRUE)
 sample(c(-1, 1), 25, replace = TRUE)
+
+## #############################################################################
+## from vectors to data frames
+## #############################################################################
+
+## custom vectors -> combine values into vector
+h <- c(174, 170, 160)
+w <- c(90, 80, 70)
+
+## render a scatterplot
+plot(h, w, main = "Demo", xlab = 'Height', ylab = 'Weight')
+
+## compute the correlation coefficient
+cor(w, h)
+
+## build a basic linear model
+lm(w ~ h)
+fit <- lm(w ~ h)
+summary(fit)
+?fit
+?lm
+str(fit)
+
+56 * fit$coefficients[2] + fit$coefficients[1]
+56 * 1.3462 + -146.1538
+predict(fit, list(h = 56))
+?predict
+predict(fit, h = 56)
+
+## plot this model
+plot(h, w, main = "Demo", xlab = 'Height', ylab = 'Weight')
+abline(fit, col = 'red')
+
+## intro to data.frame object type
+df <- data.frame(weight = w, height = h)
+df
+
+plot(df)
+cor(df)
+lm(df)
+
+str(df)
